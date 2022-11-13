@@ -11,9 +11,13 @@ app.get('/', (req, res) => {
 // MIDDLEWARE
 app.use(express.static('public'))
 
+
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
+// MIDDLEWARE
+app.use(methodOverride('_method'))
+
 
 
 
@@ -35,3 +39,6 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log('listening on port', PORT);
 })
+
+// DEPENDENCIES
+const methodOverride = require('method-override')
