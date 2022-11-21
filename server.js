@@ -1,9 +1,10 @@
 const express = require ('express')
+// require mongoose 
+const mongoose = require('mongoose')
 // DEPENDENCIES
 const methodOverride = require('method-override')
 
-// require mongoose 
-const mongoose = require('mongoose')
+
 // creating shorthand for the Schema constructor 
 const { Schema } = mongoose 
 
@@ -11,25 +12,6 @@ const { Schema } = mongoose
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}, 
   () => { console.log('connected to mongo: ', process.env.MONGO_URI) }
 )
-
-
-
-
-// schema
-const breadSchema = new Schema({
-    name: { type: String, required: true },
-    hasGluten: Boolean,
-    image: { type: String, default: 'http://placehold.it/500x500.png' }
-})
-
-// model and export 
-const Bread = mongoose.model('Bread', breadSchema)
-module.exports = Bread
-
-
-
-
-
 
 
 require('dotenv').config()
